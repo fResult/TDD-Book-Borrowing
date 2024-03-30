@@ -3,7 +3,7 @@ import { describe, it, expect } from "vitest"
 const bookCollection = ["CLRS", "Element of Programming Style"]
 
 function borrowBook(bookCollection: string[], bookToBorrow: string): any {
-  return ["Element of Programming Style"]
+  return bookCollection.filter(book => bookToBorrow !== book)
 }
 
 describe("Book borrowing", () => {
