@@ -5,9 +5,14 @@ const bookCollection: string[] = ["CLRS", "Element of Programming Style"]
 function borrowBook(bookCollection: string[], bookToBorrow: string) {
   const foundBook = bookCollection.find((book) => bookToBorrow === book)
 
+  if (!foundBook) return {
+    success: false,
+    reason: `There is no book [${bookToBorrow}] in the store`,
+    remainingBooks: bookCollection,
+  }
+
   return {
-    success: foundBook !== undefined,
-    reason: foundBook !== undefined ? undefined : "There is no book [other book] in the store",
+    success: true,
     remainingBooks: bookCollection.filter((book) => bookToBorrow !== book),
   }
 }
