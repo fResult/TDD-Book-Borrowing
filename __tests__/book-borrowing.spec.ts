@@ -1,10 +1,12 @@
 import { describe, it, expect } from "vitest"
 
-const bookCollection = ["CLRS", "Element of Programming Style"]
+const bookCollection: string[] = ["CLRS", "Element of Programming Style"]
 
-function borrowBook(bookCollection: string[], bookToBorrow: string): any {
+function borrowBook(bookCollection: string[], bookToBorrow: string) {
+  const foundBook = bookCollection.find(book => bookToBorrow === book)
+
   return {
-    success:   bookCollection.find(book => bookToBorrow === book) !== undefined,
+    success: foundBook !== undefined,
     remainingBooks: bookCollection.filter((book) => bookToBorrow !== book)
   }
 }
