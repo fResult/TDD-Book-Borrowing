@@ -3,11 +3,12 @@ import { describe, it, expect } from "vitest"
 const bookCollection: string[] = ["CLRS", "Element of Programming Style"]
 
 function borrowBook(bookCollection: string[], bookToBorrow: string) {
-  const foundBook = bookCollection.find(book => bookToBorrow === book)
+  const foundBook = bookCollection.find((book) => bookToBorrow === book)
 
   return {
     success: foundBook !== undefined,
-    remainingBooks: bookCollection.filter((book) => bookToBorrow !== book)
+    reason: foundBook !== undefined ? undefined : "There is no book [other book] in the store",
+    remainingBooks: bookCollection.filter((book) => bookToBorrow !== book),
   }
 }
 
@@ -19,9 +20,10 @@ describe("Book borrowing", () => {
     })
   })
 
-  it("should be success=false and original book collection", () => {
+  it("should return success=false and original book collection with a reason", () => {
     expect(borrowBook(bookCollection, "other book")).toEqual({
       success: false,
+      reason: "There is no book [other book] in the store",
       remainingBooks: bookCollection,
     })
   })
