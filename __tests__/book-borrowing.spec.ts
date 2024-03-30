@@ -12,14 +12,14 @@ function borrowBook(bookCollection: string[], bookToBorrow: string) {
 }
 
 describe("Book borrowing", () => {
-  it("should return ['Element of Programming Style'] and `success=true` when borrow 'CLRS'", () => {
+  it("should return success=true and remaining book collection", () => {
     expect(borrowBook(bookCollection, "CLRS")).toEqual({
       success: true,
       remainingBooks: ["Element of Programming Style"],
     })
   })
 
-  it("should be success=false when book 'other book' which is not in the book store", () => {
+  it("should be success=false and original book collection", () => {
     expect(borrowBook(bookCollection, "other book")).toEqual({
       success: false,
       remainingBooks: bookCollection,
