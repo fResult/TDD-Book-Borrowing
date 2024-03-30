@@ -1,0 +1,9 @@
+{
+	"scripts": {
+		"test": "vitest"
+	},
+	"devDependencies": {
+		"typescript": "^5.4.3",
+		"vitest": "^1.4.0"
+	}
+}
