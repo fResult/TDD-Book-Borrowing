@@ -7,7 +7,7 @@ function borrowBook(bookCollection: string[], bookToBorrow: string) {
 
   if (!foundBook) return {
     success: false,
-    reason: `There is no book [${bookToBorrow}] in the store`,
+    reason: `There is no book [${bookToBorrow}] in this store`,
     remainingBooks: bookCollection,
   }
 
@@ -28,7 +28,7 @@ describe("Book borrowing", () => {
   it("should return success=false and original book collection with a reason", () => {
     expect(borrowBook(bookCollection, "other book")).toEqual({
       success: false,
-      reason: "There is no book [other book] in the store",
+      reason: "There is no book [other book] in this store",
       remainingBooks: bookCollection,
     })
   })
