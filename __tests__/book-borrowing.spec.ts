@@ -1,6 +1,6 @@
 import { describe, it, expect } from "vitest"
 
-const bookCollection: string[] = ["CLRS", "Element of Programming Style"]
+const bookCollection: string[] = ["CLRS", "Element of Programming Styles"]
 
 function borrowBook(bookCollection: string[], bookToBorrow: string) {
   const foundBook = bookCollection.find((book) => bookToBorrow === book)
@@ -21,14 +21,16 @@ describe("Book borrowing", () => {
   it("should return success=true and remaining book collection", () => {
     expect(borrowBook(bookCollection, "CLRS")).toEqual({
       success: true,
-      remainingBooks: ["Element of Programming Style"],
+      remainingBooks: ["Element of Programming Styles"],
     })
   })
 
   it("should return success=false and original book collection with a reason", () => {
-    expect(borrowBook(bookCollection, "other book")).toEqual({
+    const bookToBorrow = "other book"
+
+    expect(borrowBook(bookCollection, bookToBorrow)).toEqual({
       success: false,
-      reason: "There is no book [other book] in this store",
+      reason: `There is no book [${bookToBorrow}] in this store`,
       remainingBooks: bookCollection,
     })
   })
