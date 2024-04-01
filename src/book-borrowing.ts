@@ -3,7 +3,18 @@ interface IBookStock {
   amount: number;
 }
 
-export function borrowBook(bookCollection: IBookStock[], bookToBorrow: string) {
+type BookBorrowingStates<Bool extends boolean = boolean> = Bool extends true
+  ? {
+    success: true;
+    remainingBooks: IBookStock[]
+  }
+  : {
+    success: false;
+    reason: string;
+    remainingBooks: IBookStock[];
+  }
+
+export function borrowBook(bookCollection: IBookStock[], bookToBorrow: string): BookBorrowingStates {
   const foundBook = bookCollection.find((book) => bookToBorrow === book.title)
 
   if (!foundBook)
@@ -11,6 +22,13 @@ export function borrowBook(bookCollection: IBookStock[], bookToBorrow: string) {
       success: false,
       reason: `There is no book [${bookToBorrow}] in this store`,
       remainingBooks: bookCollection,
+    }
+
+  if (foundBook.amount === 0)
+    return {
+      success: false,
+      reason: `The book [${bookToBorrow}] is out of stock`,
+      remainingBooks: bookCollection
     }
 
   return {
