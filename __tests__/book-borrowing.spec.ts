@@ -1,7 +1,7 @@
 import { describe, it, expect } from "vitest"
-import { borrowBook } from "../src/book-borrowing"
+import { IBookStock, borrowBook } from "../src/book-borrowing"
 
-const bookCollection: { title: string; amount: number }[] = [
+const bookCollection: IBookStock[] = [
   { title: "CLRS", amount: 2 },
   { title: "The Elements of Programming Style", amount: 3 },
   { title: "How to Design Program", amount: 0 },
