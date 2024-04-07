@@ -16,7 +16,7 @@ const booksInStore = ["CLRS", "The Elements of Programming Style"]
 
 function borrowBook(bookCollection: Book[], bookToBorrow: Book): Book[] {
   const foundBook = bookCollection.find((book) => bookToBorrow === book)
-  if (!foundBook) throw new Error(`There is no book [${bookToBorrow}] in this store`)
+  if (!foundBook) throw new BookNotFoundError(`There is no book [${bookToBorrow}] in this store`)
 
   return bookCollection.filter((book) => bookToBorrow !== book)
 }
@@ -32,7 +32,7 @@ describe("Borrow book success", () => {
 })
 
 describe("Borrow book fail with some reasons", () => {
-  it('should throw an error with message "There is no book [Other Book] in this store"', () => {
+  it('should throw a `BookNotFoundError` with message "There is no book [Other Book] in this store"', () => {
     expect(() => borrowBook(booksInStore, "Other Book")).toThrow(BookNotFoundError)
     expect(() => borrowBook(booksInStore, "Other Book")).toThrow("There is no book [Other Book] in this store")
   })
