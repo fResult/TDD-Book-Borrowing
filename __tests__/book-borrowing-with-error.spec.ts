@@ -23,6 +23,6 @@ describe("Borrow book success", () => {
 
 describe("Borrow book fail with some reasons", () => {
   it('should throw an error with message "There is no book [Other Book] in this store"', () => {
-    expect(() => borrowBook(booksInStore, "Other Book")).toThrowError()
+    expect(() => borrowBook(booksInStore, "Other Book")).toThrowError("There is no book [Other Book] in this store")
   })
 })
