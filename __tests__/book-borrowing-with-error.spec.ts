@@ -3,7 +3,7 @@ import { describe, expect, it } from "vitest"
 type Book = string
 
 function borrowBook(bookCollection: Book[], bookToBorrow: Book): Book[] {
-  return ["The elements of Programming Style"]
+  return bookCollection.filter(book => bookToBorrow !== book)
 }
 
 describe("Borrow book success", () => {
