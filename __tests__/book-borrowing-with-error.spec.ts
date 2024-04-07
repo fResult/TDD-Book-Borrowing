@@ -2,6 +2,16 @@ import { describe, expect, it } from "vitest"
 
 type Book = string
 
+class BookNotFoundError extends Error {
+  constructor(message: string) {
+    super(message)
+  }
+
+  get name(): string {
+    return this.constructor.name
+  }
+}
+
 const booksInStore = ["CLRS", "The Elements of Programming Style"]
 
 function borrowBook(bookCollection: Book[], bookToBorrow: Book): Book[] {
@@ -23,6 +33,7 @@ describe("Borrow book success", () => {
 
 describe("Borrow book fail with some reasons", () => {
   it('should throw an error with message "There is no book [Other Book] in this store"', () => {
-    expect(() => borrowBook(booksInStore, "Other Book")).toThrowError("There is no book [Other Book] in this store")
+    expect(() => borrowBook(booksInStore, "Other Book")).toThrow(BookNotFoundError)
+    expect(() => borrowBook(booksInStore, "Other Book")).toThrow("There is no book [Other Book] in this store")
   })
 })
