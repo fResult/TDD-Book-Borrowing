@@ -7,22 +7,24 @@ const booksInStore: IBookStock[] = [
 ]
 
 describe("Borrow book success", () => {
-  it("should return the list \"The elements of Programming Style\" with its `amount` as 2 when borrow the 'CLRS'", () => {
+  it("should return the remaining books in the collection when borrow the 'CLRS'", () => {
     const actual = borrowBook(booksInStore, "CLRS")
-
-    expect(actual).toEqual([
+    const expectedResult = [
       { title: "CLRS", amount: 1 },
       { title: "The Elements of Programming Style", amount: 3 },
-    ])
+    ]
+
+    expect(actual).toEqual(expectedResult)
   })
 
-  it("should return the list [\"CLRS\"] when borrow the 'The Elements of Programming Style'", () => {
+  it("should return the remaining books in the collection when borrow the 'The Elements of Programming Style'", () => {
     const actual = borrowBook(booksInStore, "The Elements of Programming Style")
-
-    expect(actual).toEqual([
+    const expectedResult = [
       { title: "CLRS", amount: 2 },
       { title: "The Elements of Programming Style", amount: 2 },
-    ])
+    ]
+
+    expect(actual).toEqual(expectedResult)
   })
 })
 
