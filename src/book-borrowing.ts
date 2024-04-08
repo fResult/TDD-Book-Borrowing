@@ -1,4 +1,5 @@
 import { IBookStock } from "./@types/book-stock";
+import { updateBookAmountIfBookExist } from "./services/book-service";
 
 type BookBorrowingStates<Bool extends boolean = boolean> = Bool extends true
   ? {
@@ -31,13 +32,5 @@ export function borrowBook(bookCollection: IBookStock[], bookToBorrow: string): 
   return {
     success: true,
     remainingBooks: bookCollection.map(updateBookAmountIfBookExist(bookToBorrow)),
-  }
-}
-
-function updateBookAmountIfBookExist(bookToBorrow: string) {
-  return function forBookAmount(bookStock: IBookStock): IBookStock {
-    return bookToBorrow === bookStock.title ?
-      { ...bookStock, amount: bookStock.amount - 1 }
-      : bookStock
   }
 }
