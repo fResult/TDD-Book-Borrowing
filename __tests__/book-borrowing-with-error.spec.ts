@@ -1,6 +1,9 @@
 import { describe, expect, it } from "vitest"
 
-type Book = string
+interface IBookStock {
+  title: string
+  amount: number
+}
 
 class BookNotFoundError extends Error {
   constructor(message: string) {
@@ -12,13 +15,18 @@ class BookNotFoundError extends Error {
   }
 }
 
-const booksInStore = ["CLRS", "The Elements of Programming Style"]
+const booksInStore = [
+  { title: "CLRS", amount: 2 },
+  { title: "The Elements of Programming Style", amount: 3 },
+]
 
-function borrowBook(bookCollection: Book[], bookToBorrow: Book): Book[] {
-  const foundBook = bookCollection.find((book) => bookToBorrow === book)
+function borrowBook(bookCollection: IBookStock[], bookToBorrow: string): IBookStock[] {
+  const foundBook = bookCollection.find((book) => bookToBorrow === book.title)
   if (!foundBook) throw new BookNotFoundError(`There is no book [${bookToBorrow}] in this store`)
 
-  return bookCollection.filter((book) => bookToBorrow !== book)
+  return bookCollection.map((book) =>
+    bookToBorrow !== book.title ? book : { ...book, amount: book.amount - 1 }
+  )
 }
 
 describe("Borrow book success", () => {
