@@ -1,33 +1,10 @@
 import { describe, expect, it } from "vitest"
+import { BookNotFoundError, IBookStock, borrowBook } from "../src/book-borrowing-with-error"
 
-interface IBookStock {
-  title: string
-  amount: number
-}
-
-class BookNotFoundError extends Error {
-  constructor(message: string) {
-    super(message)
-  }
-
-  get name(): string {
-    return this.constructor.name
-  }
-}
-
-const booksInStore = [
+const booksInStore: IBookStock[] = [
   { title: "CLRS", amount: 2 },
   { title: "The Elements of Programming Style", amount: 3 },
 ]
-
-function borrowBook(bookCollection: IBookStock[], bookToBorrow: string): IBookStock[] {
-  const foundBook = bookCollection.find((book) => bookToBorrow === book.title)
-  if (!foundBook) throw new BookNotFoundError(`There is no book [${bookToBorrow}] in this store`)
-
-  return bookCollection.map((book) =>
-    bookToBorrow !== book.title ? book : { ...book, amount: book.amount - 1 }
-  )
-}
 
 describe("Borrow book success", () => {
   it("should return the list \"The elements of Programming Style\" with its `amount` as 2 when borrow the 'CLRS'", () => {
