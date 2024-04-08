@@ -1,5 +1,7 @@
 import { describe, expect, it } from "vitest"
-import { IBookStock, borrowBook } from "../src/book-borrowing-with-error"
+
+import { IBookStock } from "../src/@types/book-stock"
+import { borrowBook } from "../src/book-borrowing-with-error"
 import { BookNotFoundError } from "../src/errors/book-not-found-error"
 import { BookOutOfStockError } from "../src/errors/book-out-of-stock-error"
 

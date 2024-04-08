@@ -1,7 +1,4 @@
-export interface IBookStock {
-  title: string;
-  amount: number;
-}
+import { IBookStock } from "./@types/book-stock";
 
 type BookBorrowingStates<Bool extends boolean = boolean> = Bool extends true
   ? {

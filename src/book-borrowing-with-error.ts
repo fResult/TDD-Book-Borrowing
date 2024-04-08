@@ -1,10 +1,7 @@
+import { IBookStock } from "./@types/book-stock"
 import { BookNotFoundError } from "./errors/book-not-found-error"
 import { BookOutOfStockError } from "./errors/book-out-of-stock-error"
 
-export interface IBookStock {
-  title: string
-  amount: number
-}
 
 export function borrowBook(bookCollection: IBookStock[], bookToBorrow: string): IBookStock[] {
   const foundBook = bookCollection.find((book) => bookToBorrow === book.title)
