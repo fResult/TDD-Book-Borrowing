@@ -1,5 +1,7 @@
-import { describe, it, expect } from "vitest"
-import { IBookStock, borrowBook } from "../src/book-borrowing"
+import { describe, expect, it } from "vitest"
+
+import { IBookStock } from "../src/@types/book-stock"
+import { borrowBook } from "../src/book-borrowing"
 
 const bookCollection: IBookStock[] = [
   { title: "CLRS", amount: 2 },
