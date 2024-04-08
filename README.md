@@ -22,4 +22,4 @@ Think like Minimum Viable Function
 - [x] 3) In addition to the behavior described in requirement 2, it should also attach an **error message** as "There is no book [«book_name»] in this store"
 - [x] 4) In addition to the behavior described in requirement 3, it should change the **error type** from a normal `Error` to be a `BookNotFoundError`
 - [x] 5) In addition to the behavior described in requirement 1, it should also return an `amount` as **original amount** - 1
-- [ ] 6) It should throw a `BookOutOfStockError`, with the **error message** as "The book [«book_name»] is out of stock" when that book's `amount` is `0`
+- [x] 6) It should throw a `BookOutOfStockError`, with the **error message** as "The book [«book_name»] is out of stock" when that book's `amount` is `0`
