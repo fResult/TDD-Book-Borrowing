@@ -37,6 +37,7 @@ describe("Borrow book success", () => {
 
 describe("Borrow book fail with some reasons", () => {
   it('should throw a `BookNotFoundError` with message "There is no book [Other Book] in this store"', () => {
+    // TODO: The `borrowBook` function is called 2 times, make it is called only 1 time
     const actual = () => borrowBook(booksInStore, "Other Book")
 
     expect(actual).toThrow(BookNotFoundError)
