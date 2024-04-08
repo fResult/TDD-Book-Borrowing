@@ -1,10 +1,7 @@
 import { describe, expect, it } from "vitest"
-import {
-  BookNotFoundError,
-  BookOutOfStockError,
-  IBookStock,
-  borrowBook,
-} from "../src/book-borrowing-with-error"
+import { IBookStock, borrowBook } from "../src/book-borrowing-with-error"
+import { BookNotFoundError } from "../src/errors/book-not-found-error"
+import { BookOutOfStockError } from "../src/errors/book-out-of-stock-error"
 
 const booksInStore: IBookStock[] = [
   { title: "CLRS", amount: 2 },
